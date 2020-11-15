@@ -1,12 +1,10 @@
 const bcryptjs = require("bcryptjs");
-// import the library
 const jwt = require('jsonwebtoken');
 const router = require("express").Router();
 
 const Users = require("../users/users-model.js");
 const { isValid } = require("../users/users-service.js");
 
-// pull in the secret we'll use to make the JWT
 const { jwtSecret } = require('./secrets.js');
 
 router.post("/register", (req, res) => {
@@ -15,7 +13,6 @@ router.post("/register", (req, res) => {
   if (isValid(credentials)) {
     const rounds = process.env.BCRYPT_ROUNDS || 8;
 
-    // hash the password
     const hash = bcryptjs.hashSync(credentials.password, rounds);
 
     credentials.password = hash;
@@ -30,7 +27,7 @@ router.post("/register", (req, res) => {
       });
   } else {
     res.status(400).json({
-      message: "please provide username and password and the password shoud be alphanumeric",
+      message: "please provide username and password",
     });
   }
 });
@@ -43,9 +40,9 @@ router.post("/login", (req, res) => {
       .then(([user]) => {
         if (user && bcryptjs.compareSync(password, user.password)) {
           const token = makeToken(user) // make token
-          res.status(200).json({ message: "Welcome to our API", token }); // send it back
+          res.status(200).json({ message: "Welcome to our API ⎝⏠⏝⏠⎠", token }); // send it back
         } else {
-          res.status(401).json({ message: "Invalid credentials" });
+          res.status(401).json({ message: "Invalid credentials ಠ╭╮ಠ" });
         }
       })
       .catch(error => {
@@ -53,12 +50,12 @@ router.post("/login", (req, res) => {
       });
   } else {
     res.status(400).json({
-      message: "please provide username and password and the password shoud be alphanumeric",
+      message: "please provide username and password",
     });
   }
 });
 
-// helper to make the token using the user from db as raw material
+
 function makeToken(user) {
   const payload = {
     subject: user.id,
@@ -67,7 +64,7 @@ function makeToken(user) {
     foo: 'bar',
   };
   const options = {
-    expiresIn: '25 seconds',
+    expiresIn: '5 minutes',
   };
   return jwt.sign(payload, jwtSecret, options);
 }

@@ -10,11 +10,12 @@ server.use(morgan("dev"));
 server.use(cors());
 server.use(express.json());
 
-const userRouter = require('./users/userRouter')
-server.use('/api/users', userRouter)
+const userRouter = require('../../users/users-router')
+const authRouter = require('../auth-router')
+server.use('/api/', userRouter, authRouter)
 
 server.get("/", (req, res) => {
-  res.send("the server is running");
+  res.send("the server is running ◕ ◡ ◕ ");
 });
 
 module.exports = server;

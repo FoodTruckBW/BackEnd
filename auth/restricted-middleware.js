@@ -6,13 +6,13 @@ module.exports = (req, res, next) => {
   const token = req.headers.authorization;
 
   if (!token) {
-    return res.status(401).json({ message: 'provide token' });
+    return res.status(401).json({ message: 'provide token ◖|◔◡◉|◗' });
   }
 
   jwt.verify(token, jwtSecret, (err, decoded) => {
     if (err) {
       console.log('decoded error ->', err);
-      return res.status(401).json({ message: 'token no good, bad' });
+      return res.status(401).json({ message: 'token no good, bad 【•】_【•】' });
     }
 
     console.log('decoded token ->', decoded);
