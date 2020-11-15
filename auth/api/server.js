@@ -10,8 +10,8 @@ server.use(morgan("dev"));
 server.use(cors());
 server.use(express.json());
 
-// const userRouter = require('./users/userRouter')
-// server.use('/api/users', userRouter)
+const userRouter = require('./users/userRouter')
+server.use('/api/users', userRouter)
 
 server.get("/", (req, res) => {
   res.send("the server is running");
