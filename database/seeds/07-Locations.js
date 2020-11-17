@@ -1,13 +1,16 @@
 
 exports.seed = function(knex) {
-  // Deletes ALL existing entries
-  return knex('table_name').del()
-    .then(function () {
-      // Inserts seed entries
-      return knex('table_name').insert([
-        {id: 1, colName: 'rowValue1'},
-        {id: 2, colName: 'rowValue2'},
-        {id: 3, colName: 'rowValue3'}
-      ]);
-    });
+  return knex("Location").insert([
+    {
+      Location: "5th Ave",
+      arrivalTime:"2:00 pm",
+      departureTime: "4:00 pm"
+    },
+    {
+      Location: "7th Ave",
+      arrivalTime:"5:00 pm",
+      departureTime: "8:00 pm"
+    },
+  ]);
+;
 };

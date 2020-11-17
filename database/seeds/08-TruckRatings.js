@@ -1,13 +1,47 @@
 
 exports.seed = function(knex) {
-  // Deletes ALL existing entries
-  return knex('table_name').del()
-    .then(function () {
-      // Inserts seed entries
-      return knex('table_name').insert([
-        {id: 1, colName: 'rowValue1'},
-        {id: 2, colName: 'rowValue2'},
-        {id: 3, colName: 'rowValue3'}
-      ]);
-    });
+  return knex("TruckRatings").insert([
+    {
+      rating: 10,
+      TruckId: 1  
+    },
+    {
+      rating: 9,
+      TruckId: 1  
+    },
+    {
+      rating: 8,
+      TruckId: 1  
+    },
+    {
+      rating: 5,
+      TruckId: 2  
+    },
+    {
+      rating: 6,
+      TruckId: 2  
+    },
+    {
+      rating: 10,
+      TruckId: 3  
+    },
+    {
+      rating: 9,
+      TruckId: 3  
+    },
+    {
+      rating: 2,
+      TruckId: 4  
+    },
+    {
+      rating: 6,
+      TruckId: 4  
+    },
+    {
+      rating: 4,
+      TruckId: 4  
+    },
+    
+  ]);
+;
 };
