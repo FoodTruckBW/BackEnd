@@ -1,6 +1,6 @@
 
 exports.seed = function(knex) {
-  return knex("ItemRating").insert([
+  return knex("ItemRatings").insert([
     {
       rating: 10,
       TruckId: 1,

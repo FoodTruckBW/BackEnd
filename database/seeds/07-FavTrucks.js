@@ -16,7 +16,7 @@ exports.seed = function (knex) {
     {
       UserId: 4,
       TruckId: 2
-    },
+  },
 
-  ]);
+]);
 };
