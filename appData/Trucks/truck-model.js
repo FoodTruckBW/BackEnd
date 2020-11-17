@@ -22,9 +22,12 @@ function getAllTrucks() {
 
 //tested
 function getTruckById(id) {
-  return db("TruckInfo as t")
-    .join("Locations as l", "l.id", "t.id")
-    .where({ "t.id": id });
+  return (
+    db("TruckInfo as t")
+      .join("Locations as l", "l.id", "t.id")
+      // .join("TruckRatings as r", "r.id", "t.id")
+      .where({ "t.id": id })
+  );
   //returns CurrentLocation, can remove with .select({ALL TABLE NAMES EXCEPT CurrentLocation})
 }
 
