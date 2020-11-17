@@ -10,12 +10,18 @@ server.use(morgan("dev"));
 server.use(cors());
 server.use(express.json());
 
-const userRouter = require('../../users/users-router')
-const authRouter = require('../auth-router')
-server.use('/api/', userRouter, authRouter)
+const userRouter = require("../../users/users-router");
+const authRouter = require("../auth-router");
+
+const truckRouter = require("../../appData/Trucks/truck-router");
+const itemRouter = require("../../appData/Items/item-router");
+
+server.use("/api", userRouter, authRouter);
+server.use("/api", truckRouter);
+server.use("/api", itemRouter);
 
 server.get("/", (req, res) => {
-  res.send("the server is running ◕ ◡ ◕ ");
+  res.send("The server is running ◕ ◡ ◕");
 });
 
 module.exports = server;
