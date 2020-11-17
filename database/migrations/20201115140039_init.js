@@ -67,13 +67,23 @@ exports.up = function (knex) {
         .onUpdate("CASCADE");
     })
     .createTable("TruckInfo", (tbl) => {
-      tbl.increments("id")
-      tbl.string("Name").notNullable().unique()
-      tbl.string("imageURL")
-      tbl.string("cuisineType").notNullable()
-      tbl.integer("CustomerRating")
-      tbl.integer("TruckOwner").notNullable().references("OwnedTrucks.UserId").onDelete("CASCADE").onUpdate("CASCADE");
-      tbl.integer("CurrentLocation").notNullable().unsigned().references("Locations.id").onDelete("CASCADE").onUpdate("CASCADE");
+      tbl.increments("id");
+      tbl.string("Name").notNullable().unique();
+      tbl.string("imageURL");
+      tbl.string("cuisineType").notNullable();
+      tbl.integer("CustomerRating");
+      // tbl
+      //   .integer("TruckOwner")
+      //   .notNullable()
+      //   .references("OwnedTrucks.UserId")
+      //   .onDelete("CASCADE")
+      //   .onUpdate("CASCADE");
+      tbl
+        .integer("CurrentLocation")
+        .unsigned()
+        .references("Locations.id")
+        .onDelete("CASCADE")
+        .onUpdate("CASCADE");
     })
     .createTable("Locations", (tbl) => {
       tbl.increments("id");
@@ -81,25 +91,40 @@ exports.up = function (knex) {
       tbl.string("arrivalTime");
       tbl.string("departureTime");
     })
-    .createTable('TruckRatings', (tbl) =>{
-      tbl.increments("id")
-      tbl.integer('rating').unsigned()
-      tbl.integer('TruckId').unsigned().references('TruckInfo.id').onDelete("RESTRICT").onUpdate("RESTRICT");
+    .createTable("TruckRatings", (tbl) => {
+      tbl.increments("id");
+      tbl.integer("rating").unsigned();
+      tbl
+        .integer("TruckId")
+        .unsigned()
+        .references("TruckInfo.id")
+        .onDelete("RESTRICT")
+        .onUpdate("RESTRICT");
     })
-    .createTable('Menu', tbl =>{
-      tbl.increments('id')
-      tbl.string('Name').notNullable()
-      tbl.string('Description').notNullable()
-      tbl.string('photoURL')
-      tbl.integer('price').notNullable()
-      tbl.integer('rating')
+    .createTable("Menu", (tbl) => {
+      tbl.increments("id");
+      tbl.string("Name").notNullable();
+      tbl.string("Description").notNullable();
+      tbl.string("photoURL");
+      tbl.integer("price").notNullable();
+      tbl.integer("rating");
     })
-    .createTable('ItemRatings', (tbl) =>{
-      tbl.increments("id")
-      tbl.integer('rating').unsigned()
-      tbl.integer('TruckId').unsigned().references('TruckInfo.id').onDelete("RESTRICT").onUpdate("RESTRICT");
-      tbl.integer('ItemId').unsigned().references('Menu.id').onDelete("RESTRICT").onUpdate("RESTRICT");    
-    })
+    .createTable("ItemRatings", (tbl) => {
+      tbl.increments("id");
+      tbl.integer("rating").unsigned();
+      tbl
+        .integer("TruckId")
+        .unsigned()
+        .references("TruckInfo.id")
+        .onDelete("RESTRICT")
+        .onUpdate("RESTRICT");
+      tbl
+        .integer("ItemId")
+        .unsigned()
+        .references("Menu.id")
+        .onDelete("RESTRICT")
+        .onUpdate("RESTRICT");
+    });
 };
 
 exports.down = function (knex) {
