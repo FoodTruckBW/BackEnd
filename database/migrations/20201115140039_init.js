@@ -15,7 +15,32 @@ exports.up = function (knex) {
         .integer("role")
         .unsigned()
         .references("roles.id")
-        .onDelete("RESTRICT")
+        .onDelete("CASCADE")
+        .onUpdate("CASCADE");
+    })
+    .createTable("Locations", (tbl) => {
+      tbl.increments("id");
+      tbl.string("Location");
+      tbl.string("arrivalTime");
+      tbl.string("departureTime");
+    })
+    .createTable("TruckInfo", (tbl) => {
+      tbl.increments("id");
+      tbl.string("Name").notNullable().unique();
+      tbl.string("imageURL");
+      tbl.string("cuisineType").notNullable();
+      tbl.integer("CustomerRating");
+      // tbl
+      //   .integer("TruckOwner")
+      //   .notNullable()
+      //   .references("OwnedTrucks.UserId")
+      //   .onDelete("CASCADE")
+      //   .onUpdate("CASCADE");
+      tbl
+        .integer("CurrentLocation")
+        .unsigned()
+        .references("Locations.id")
+        .onDelete("CASCADE")
         .onUpdate("CASCADE");
     })
     .createTable("OwnedTrucks", (tbl) => {
@@ -66,31 +91,6 @@ exports.up = function (knex) {
         .onDelete("CASCADE")
         .onUpdate("CASCADE");
     })
-    .createTable("TruckInfo", (tbl) => {
-      tbl.increments("id");
-      tbl.string("Name").notNullable().unique();
-      tbl.string("imageURL");
-      tbl.string("cuisineType").notNullable();
-      tbl.integer("CustomerRating");
-      // tbl
-      //   .integer("TruckOwner")
-      //   .notNullable()
-      //   .references("OwnedTrucks.UserId")
-      //   .onDelete("CASCADE")
-      //   .onUpdate("CASCADE");
-      tbl
-        .integer("CurrentLocation")
-        .unsigned()
-        .references("Locations.id")
-        .onDelete("CASCADE")
-        .onUpdate("CASCADE");
-    })
-    .createTable("Locations", (tbl) => {
-      tbl.increments("id");
-      tbl.string("Location");
-      tbl.string("arrivalTime");
-      tbl.string("departureTime");
-    })
     .createTable("TruckRatings", (tbl) => {
       tbl.increments("id");
       tbl.integer("rating").unsigned();
@@ -98,8 +98,8 @@ exports.up = function (knex) {
         .integer("TruckId")
         .unsigned()
         .references("TruckInfo.id")
-        .onDelete("RESTRICT")
-        .onUpdate("RESTRICT");
+        .onDelete("CASCADE")
+        .onUpdate("CASCADE");
     })
     .createTable("Menu", (tbl) => {
       tbl.increments("id");
@@ -116,14 +116,14 @@ exports.up = function (knex) {
         .integer("TruckId")
         .unsigned()
         .references("TruckInfo.id")
-        .onDelete("RESTRICT")
-        .onUpdate("RESTRICT");
+        .onDelete("CASCADE")
+        .onUpdate("CASCADE");
       tbl
         .integer("ItemId")
         .unsigned()
         .references("Menu.id")
-        .onDelete("RESTRICT")
-        .onUpdate("RESTRICT");
+        .onDelete("CASCADE")
+        .onUpdate("CASCADE");
     });
 };
 
@@ -132,11 +132,11 @@ exports.down = function (knex) {
     .dropTableIfExists("ItemRatings")
     .dropTableIfExists("Menu")
     .dropTableIfExists("TruckRatings")
-    .dropTableIfExists("Locations")
-    .dropTableIfExists("TrucksInfo")
     .dropTableIfExists("FavTrucks")
     .dropTableIfExists("Diner")
     .dropTableIfExists("OwnedTrucks")
+    .dropTableIfExists("TruckInfo")
+    .dropTableIfExists("Locations")
+    .dropTableIfExists("users")
     .dropTableIfExists("roles")
-    .dropTableIfExists("users");
 };

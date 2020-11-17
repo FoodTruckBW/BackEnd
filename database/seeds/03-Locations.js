@@ -1,6 +1,6 @@
 
 exports.seed = function(knex) {
-  return knex("Location").insert([
+  return knex("Locations").insert([
     {
       Location: "5th Ave",
       arrivalTime:"2:00 pm",
