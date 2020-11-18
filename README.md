@@ -1,6 +1,7 @@
 **BACKEND**
 
-Base: /api
+Base: http://foodtruck-tracker-bw.herokuapp.com/api
+
 
 **USER Data**
 -----------------------------------------
