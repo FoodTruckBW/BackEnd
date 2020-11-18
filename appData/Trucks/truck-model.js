@@ -23,9 +23,25 @@ function getAllTrucks() {
 //tested
 function getTruckById(id) {
   return db("TruckInfo as t")
-    .join("Locations as l", "l.id", "t.id")
-    .where({ "t.id": id });
+    .leftJoin("Locations as l", "l.id", "t.id")
+    .leftJoin("TruckRatings as r", "t.id", "r.TruckId")
+    .avg("rating as ratingAVG")
+    .where({ "t.id": id })
+    .select(
+      "Location",
+      "Name",
+      "TruckId",
+      "arrivalTime",
+      "cuisineType",
+      "departureTime",
+      "t.id",
+      "imageURL"
+    );
   //returns CurrentLocation, can remove with .select({ALL TABLE NAMES EXCEPT CurrentLocation})
+}
+
+function getTruckRating(id) {
+  return db("TruckRatings").where({ TruckId: id });
 }
 
 function updateTruck(id, newData) {
@@ -34,10 +50,6 @@ function updateTruck(id, newData) {
 
 function delTruck(id) {
   return db("TruckInfo").where({ id }).del();
-}
-
-function getTruckRating(id) {
-  return db("TruckRatings").where({ TruckId: id }).first();
 }
 
 function getTruckMenu(id) {

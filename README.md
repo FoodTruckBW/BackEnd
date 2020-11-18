@@ -1,10 +1,11 @@
-=BACKEND=
+**BACKEND**
 
-Base: /api
+Base: http://foodtruck-tracker-bw.herokuapp.com/api
+
 
 **USER Data**
 -----------------------------------------
-|CRUD| api/auth/*** | expect:  |
+|CRUD| api/*** | expect:  |
 |---| ------- | ---------------------------- |
 |POST| /register | must contain username, password, email, role see $ |
 |POST| /login | returns token  |
@@ -28,6 +29,7 @@ role: //1 will be vendor, 2 will be diner $<br>
 |---| ------- | ---------------------------- |
 |GET| /trucks | returns array of food trucks |
 |GET| /trucks:id | returns array of single food truck |
+|GET| /trucks:id/rate | returns array of ratings for truck at ID |
 |POST| /trucks | to post a new truck see $ |
 |PUT| /trucks:id | to edit one truck in specific |
 |DELETE| trucks:id| deletes one truck in particular|

@@ -26,8 +26,23 @@ router.get("/trucks/:id", (req, res) => {
     });
 });
 
+router.get("/trucks/:id/rate", (req, res) => {
+  Truck.getTruckRating(req.params.id)
+    .then((data) => {
+      if (!data.length) {
+        res.status(404).json({ message: "No truck with said ID" });
+      } else {
+        res.status(200).json(data);
+      }
+    })
+    .catch((error) => {
+      res.status(500).json({ message: error.message });
+    });
+});
+
+//tested
 router.post("/trucks", (req, res) => {
-  Truck.create(req.body)
+  Truck.addTruck(req.body)
     .then(([id]) => {
       return Truck.getTruckById(id);
     })
@@ -38,9 +53,9 @@ router.post("/trucks", (req, res) => {
       res.status(500).json({ message: error.message });
     });
 });
-
+//tested
 router.put("/trucks/:id", (req, res) => {
-  Truck.update(req.params.id, req.body)
+  Truck.updateTruck(req.params.id, req.body)
     .then((item) => {
       if (!item) {
         res.status(404).json({ message: "No truck with that ID" });
@@ -55,9 +70,9 @@ router.put("/trucks/:id", (req, res) => {
       res.status(500).json({ message: error.message });
     });
 });
-
+//tested
 router.delete("/trucks/:id", (req, res) => {
-  Truck.delete(req.params.id)
+  Truck.delTruck(req.params.id)
     .then((delPlace) => {
       if (!delPlace) {
         res.status(404).json({ message: "No truck with that ID" });
