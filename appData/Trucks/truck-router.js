@@ -26,19 +26,19 @@ router.get("/trucks/:id", (req, res) => {
     });
 });
 
-// router.get("/trucks/:id/rate", (req, res) => {
-//   Truck.getRatings(req.params.id)
-//     .then((data) => {
-//       if (!data.length) {
-//         res.status(404).json({ message: "No truck with said ID" });
-//       } else {
-//         res.status(200).json(data[0]);
-//       }
-//     })
-//     .catch((error) => {
-//       res.status(500).json({ message: error.message });
-//     });
-// });
+router.get("/trucks/:id/rate", (req, res) => {
+  Truck.getTruckRating(req.params.id)
+    .then((data) => {
+      if (!data.length) {
+        res.status(404).json({ message: "No truck with said ID" });
+      } else {
+        res.status(200).json(data);
+      }
+    })
+    .catch((error) => {
+      res.status(500).json({ message: error.message });
+    });
+});
 
 //tested
 router.post("/trucks", (req, res) => {

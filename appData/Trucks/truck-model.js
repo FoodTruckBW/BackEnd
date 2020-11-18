@@ -6,7 +6,6 @@ module.exports = {
   getTruckById,
   updateTruck,
   delTruck,
-  getRatings,
 
   getTruckRating,
   getTruckMenu,
@@ -36,22 +35,14 @@ function getTruckById(id) {
       "cuisineType",
       "departureTime",
       "t.id",
-      "imageURL",
-      "rating as ratings"
+      "imageURL"
     );
   //returns CurrentLocation, can remove with .select({ALL TABLE NAMES EXCEPT CurrentLocation})
 }
 
-// select * from TruckInfo as t
-// left join Locations as l on l.id = t.id
-// join TruckRatings as r on r.TruckId = t.id
-// where t.id = 1
-
-// function getRatings(id) {
-//   return db("TruckInfo as t")
-//     .join("TruckRatings as r", "t.id", "r.TruckId")
-//     .where({ "t.id": id });
-// }
+function getTruckRating(id) {
+  return db("TruckRatings").where({ TruckId: id });
+}
 
 function updateTruck(id, newData) {
   return db("TruckInfo").where({ id }).update(newData);
@@ -59,10 +50,6 @@ function updateTruck(id, newData) {
 
 function delTruck(id) {
   return db("TruckInfo").where({ id }).del();
-}
-
-function getTruckRating(id) {
-  return db("TruckRatings").where({ TruckId: id }).first();
 }
 
 function getTruckMenu(id) {
