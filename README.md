@@ -2,61 +2,62 @@
 
 Base: /api
 
--Truck Data-
+**USER Data**
+-----------------------------------------
+|CRUD| api/auth/*** | expect:  |
+|---| ------- | ---------------------------- |
+|POST| /register | must contain username, password, email, role see $ |
+|POST| /login | returns token  |
 
-[GET] /trucks
-
-returns: array of truck objects [ { } ]
-
-[GET] /trucks/:id
-
-returns: truck object at given ID
-
-[POST] /trucks
+<br>
 
 $ = required
 required in body:
-{
-Name: STRING $
-imageURL: STRING $
-cuisineType: STRING $
-}
-returns: new truck object
+<br>
+<br>
+<pre><code>{ <br>
+username: STRING $ <br>
+password: STRING $ <br>
+email: STRING $<br>
+role: //1 will be vendor, 2 will be diner $<br>
+}</code> </pre><br> <br>
 
-[PUT] /trucks/:id
-body must be same struture as POST
-returns: changes truck object
-
-[DELETE] /trucks/:id
-
-returns: message
-
--Item Data-
-
-[GET] /item
-
-returns: array of item objects [ { } ]
-
-[GET] /item/:id
-
-returns: item object at given ID
-
-[POST] /item
+**Truck Data**
+-----------------------------------------
+|CRUD| api/**** | expect:  |
+|---| ------- | ---------------------------- |
+|GET| /trucks | returns array of food trucks |
+|GET| /trucks:id | returns array of single food truck |
+|POST| /trucks | to post a new truck see $ |
+|PUT| /trucks:id | to edit one truck in specific |
+|DELETE| trucks:id| deletes one truck in particular|
 
 $ = required
 required in body:
-{
-Name: STRING $
-Description: STRING $
-photoURL: STRING 
-price: INTEGER $
-}
-returns: new item object
+<br>
+<br>
+<pre><code>{ <br>
+Name: STRING $ <br>
+imageURL: STRING $ <br>
+cuisineType: STRING $<br>
+}</code> </pre><br> <br>
 
-[PUT] /item/:id
-body must be same struture as POST
-returns: changes item object
 
-[DELETE] /item/:id
+**Item Data**
+-----------------------------------------
+|CRUD| api/**** | expect:  |
+|---| ------- | ---------------------------- |
+|GET| /item | returns array of food for sale |
+|GET| /item/:id | single food item |
+|POST| /item | to post a new item see $ |
+|PUT| /item:id | to edit one item in specific |
+|DELETE| item:id| deletes one item in particular|
 
-returns: message
+<br>
+<br>
+<pre><code>{ <br>
+Name: STRING $ <br>
+Description: STRING $ <br>
+photoURL: STRING $ <br>
+price: INTEGER $<br>
+}</code> </pre><br> <br>
