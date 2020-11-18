@@ -42,11 +42,16 @@ function getTruckById(id) {
   //returns CurrentLocation, can remove with .select({ALL TABLE NAMES EXCEPT CurrentLocation})
 }
 
-function getRatings(id) {
-  return db("TruckInfo as t")
-    .join("TruckRatings as r", "t.id", "r.TruckId")
-    .where({ "t.id": id });
-}
+// select * from TruckInfo as t
+// left join Locations as l on l.id = t.id
+// join TruckRatings as r on r.TruckId = t.id
+// where t.id = 1
+
+// function getRatings(id) {
+//   return db("TruckInfo as t")
+//     .join("TruckRatings as r", "t.id", "r.TruckId")
+//     .where({ "t.id": id });
+// }
 
 function updateTruck(id, newData) {
   return db("TruckInfo").where({ id }).update(newData);
