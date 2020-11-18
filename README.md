@@ -53,7 +53,7 @@ cuisineType: STRING $<br>
 |GET| /item/:id | single food item |
 |POST| /item | to post a new item see $ |
 |PUT| /item/:id | to edit one item in specific |
-|DELETE| item/:id| deletes one item in particular|
+|DELETE| /item/:id| deletes one item in particular|
 
 <br>
 <br>
