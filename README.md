@@ -5,7 +5,7 @@ Base: http://foodtruck-tracker-bw.herokuapp.com/api
 
 **USER Data**
 -----------------------------------------
-|CRUD| api/auth/*** | expect:  |
+|CRUD| api/*** | expect:  |
 |---| ------- | ---------------------------- |
 |POST| /register | must contain username, password, email, role see $ |
 |POST| /login | returns token  |
