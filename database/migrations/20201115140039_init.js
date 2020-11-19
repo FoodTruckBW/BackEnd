@@ -31,12 +31,6 @@ exports.up = function (knex) {
       tbl.string("imageURL");
       tbl.string("cuisineType").notNullable();
       tbl.integer("CustomerRating");
-      // tbl
-      //   .integer("TruckOwner")
-      //   .notNullable()
-      //   .references("OwnedTrucks.UserId")
-      //   .onDelete("CASCADE")
-      //   .onUpdate("CASCADE");
       tbl
         .integer("CurrentLocation")
         .unsigned()
