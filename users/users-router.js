@@ -16,7 +16,7 @@ function roleChecker(role) {
 router.get("/", restricted, roleChecker(1), (req, res) => {
   Users.find()
     .then(users => {
-      res.status(200).json(users);
+      res.status(200).json({message: 'logged in successfully'});
     })
     .catch(err => res.send(err));
 });

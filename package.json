@@ -5,9 +5,11 @@
   "main": "index.js",
   "scripts": {
     "server": "nodemon index.js",
+
     "test": "cross-env NODE_ENV=testing jest --watch --verbose",
     "test:migrate": "knex migrate:latest --env=testing",
-    "test:seed": "knex seed:run --env=testing"
+    "test:seed": "knex seed:run --env=testing",
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",

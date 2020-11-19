@@ -9,10 +9,11 @@ exports.up = function (knex) {
       tbl.increments("id");
 
       tbl.string("username", 128).notNullable().unique().index();
-      tbl.string("password", 256).notNullable();
-
+      tbl.string("password", 256).notNullable()
+      tbl.string("email").notNullable().unique()
       tbl
         .integer("role")
+        .notNullable()
         .unsigned()
         .references("roles.id")
         .onDelete("CASCADE")
@@ -30,12 +31,6 @@ exports.up = function (knex) {
       tbl.string("imageURL");
       tbl.string("cuisineType").notNullable();
       tbl.integer("CustomerRating");
-      // tbl
-      //   .integer("TruckOwner")
-      //   .notNullable()
-      //   .references("OwnedTrucks.UserId")
-      //   .onDelete("CASCADE")
-      //   .onUpdate("CASCADE");
       tbl
         .integer("CurrentLocation")
         .unsigned()
