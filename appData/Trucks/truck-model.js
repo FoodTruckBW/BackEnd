@@ -17,7 +17,17 @@ function addTruck(truckData) {
 
 //tested
 function getAllTrucks() {
-  return db("TruckInfo");
+  return db("TruckInfo as t")
+    .leftJoin("Locations as l", "l.id", "t.id")
+    .select(
+      "Location",
+      "Name",
+      "arrivalTime",
+      "cuisineType",
+      "departureTime",
+      "t.id",
+      "imageURL"
+    );
 }
 
 //tested
